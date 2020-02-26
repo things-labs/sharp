@@ -1,5 +1,5 @@
 
-execvefile = builder
+execveFile = builder
 
 version = v0.0.1
 model = builds
@@ -17,11 +17,11 @@ flags = "-X '${path}.BuildTime=`date "+%F %T %z"`' \
 	-X '${path}.APIVersion=${APIversion}'"
 
 system:
-	@go build -ldflags ${flags} -o ${execvefile} .
+	@go build -ldflags ${flags} -o ${execveFile} .
 
 clean:
 	@echo "----> cleanning"
-	@rm ${execvefile}
+	@rm ${execveFile}
 	@echo "----> clean successful"
 
 .PHONY: system clean
