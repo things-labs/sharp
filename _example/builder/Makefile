@@ -9,7 +9,7 @@ path = github.com/thinkgos/assist/builder
 
 # TIPS: 如果值内容中含有空格，可以用单引号！
 flags = "-X '${path}.BuildTime=`date "+%F %T %z"`' \
-	-X '${path}.GitCommit=`git rev-parse --short HEAD`' \
+	-X '${path}.GitCommit=`git rev-parse --short=8 HEAD`' \
 	-X '${path}.GitFullCommit=`git rev-parse HEAD`' \
 	-X '${path}.Version=${version}' \
 	-X '${path}.Model=${model}' \

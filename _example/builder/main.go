@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"runtime"
 
 	"github.com/thinkgos/assist/builder"
 )
@@ -13,4 +14,7 @@ func main() {
 	fmt.Println("Version: " + builder.Version)
 	fmt.Println("API Version: " + builder.APIVersion)
 	fmt.Println("Model: " + builder.Model)
+
+	fmt.Println("Go version: " + runtime.Version())
+	fmt.Println("Os/Arch: " + runtime.GOOS + "/" + runtime.GOARCH)
 }
