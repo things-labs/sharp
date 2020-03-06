@@ -7,16 +7,16 @@ const (
 
 // Param 分页查询参数
 type Param struct {
-	PageNum  int `form:"pagenum" json:"pagenum"`
-	PageSize int `form:"pagesize" json:"pagesize"`
+	PageIndex int `form:"pagenum" json:"pageIndex"`
+	PageSize  int `form:"pagesize" json:"pageSize"`
 }
 
 // Infos 分页信息
 type Infos struct {
-	Total    int         `json:"total"`
-	PageNum  int         `json:"pagenum"`
-	PageSize int         `json:"pagesize"`
-	List     interface{} `json:"list"`
+	Total     int         `json:"total"`
+	PageIndex int         `json:"pageIndex"`
+	PageSize  int         `json:"pageSize"`
+	List      interface{} `json:"list"`
 }
 
 // DefaultParam 默认分页参数值
@@ -28,8 +28,8 @@ func DefaultParam() Param {
 // 默认第1页,
 // 默认分大小DefaultPageSize,可修改相应默认值
 func (sf *Param) Inspect(pageSize ...int) *Param {
-	if sf.PageNum <= 0 {
-		sf.PageNum = 1
+	if sf.PageIndex <= 0 {
+		sf.PageIndex = 1
 	}
 	if sf.PageSize <= 0 {
 		sf.PageSize = append(pageSize, DefaultPageSize)[0]
