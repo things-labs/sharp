@@ -14,8 +14,8 @@ func PrivateKey() string {
 	return privateKey
 }
 
-// GenerateFromPassword 密码hash运算
-func GenerateFromPassword(password string) (string, error) {
+// Hash 密码hash运算
+func Hash(password string) (string, error) {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(privateKey+password), bcrypt.DefaultCost)
 	if err != nil {
 		return "", err
@@ -24,7 +24,7 @@ func GenerateFromPassword(password string) (string, error) {
 	return string(bytes), err
 }
 
-// CompareHashAndPassword 密码hash验证
-func CompareHashAndPassword(password, hash string) error {
+// Compare 密码hash验证
+func Compare(password, hash string) error {
 	return bcrypt.CompareHashAndPassword([]byte(hash), []byte(privateKey+password))
 }
