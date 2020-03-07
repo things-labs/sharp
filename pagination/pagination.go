@@ -14,8 +14,8 @@ type Param struct {
 // Infos 分页信息
 type Infos struct {
 	Total     int         `json:"total"`
-	PageIndex int         `json:"pageIndex"`
-	PageSize  int         `json:"pageSize"`
+	PageIndex int         `json:"pageIndex,omitempty"`
+	PageSize  int         `json:"pageSize,omitempty"`
 	List      interface{} `json:"list"`
 }
 
