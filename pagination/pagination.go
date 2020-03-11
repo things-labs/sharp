@@ -33,7 +33,7 @@ func SetDefaultPageSizeSize(size int) {
 // 默认分页索引: 第1页
 // 默认分页大小: defaultPageSize
 // 可修改相应默认值,或使用SetDefaultPageSizeSize改变全局默认分页大小
-func (sf Param) Inspect(pageSize ...int) Param {
+func (sf *Param) Inspect(pageSize ...int) *Param {
 	if sf.PageIndex <= 0 {
 		sf.PageIndex = 1
 	}
