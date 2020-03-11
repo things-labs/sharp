@@ -1,7 +1,7 @@
 package pagination
 
 // 分页默认每页大小
-var defaultPageSize = 50
+var defaultPageSize = 10
 
 // Param 分页查询参数
 type Param struct {
