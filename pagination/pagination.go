@@ -5,8 +5,8 @@ var defaultPageSize = 10
 
 // Param 分页查询参数
 type Param struct {
-	PageIndex int `form:"pagenum" json:"pageIndex"`
-	PageSize  int `form:"pagesize" json:"pageSize"`
+	PageIndex int `form:"pageNum" json:"pageIndex"`
+	PageSize  int `form:"pageSize" json:"pageSize"`
 }
 
 // Infos 分页信息
