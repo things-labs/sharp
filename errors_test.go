@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestErrorsCanBeUsedOutsideGorm(t *testing.T) {
+func TestErrors(t *testing.T) {
 	errs := []error{errors.New("First"), errors.New("Second")}
 
 	gErrs := Errors(errs)
