@@ -64,7 +64,7 @@ func QueryOne(db *gorm.DB, query M, out interface{}) error {
 	if len(query) == 0 {
 		return db.First(out).Error
 	}
-	return db.First(out, query).Error
+	return db.Where(query).First(out).Error
 }
 
 // Update 根据id更新相应字段, db需提供model
