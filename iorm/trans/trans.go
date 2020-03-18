@@ -56,9 +56,9 @@ func (a *Trans) Rollback(trans interface{}) error {
 }
 
 // ExecTrans 执行事务
-func ExecTrans(ctx context.Context, db *gorm.DB, cb TransFunc) error {
+func ExecTrans(ctx context.Context, db *gorm.DB, tf TransFunc) error {
 	if trans := icontext.FromTrans(ctx); trans != nil {
-		return cb(ctx)
+		return tf(ctx)
 	}
 
 	transModel := NewTrans(db)
@@ -75,7 +75,7 @@ func ExecTrans(ctx context.Context, db *gorm.DB, cb TransFunc) error {
 	}()
 
 	ctx = icontext.NewTrans(ctx, trans)
-	err = cb(ctx)
+	err = tf(ctx)
 	if err != nil {
 		_ = transModel.Rollback(trans)
 		return err

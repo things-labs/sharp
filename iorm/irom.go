@@ -25,7 +25,6 @@ func QueryPage(db *gorm.DB, pg paginator.Param, out interface{}) (paginator.Info
 	if err != nil {
 		return paginator.Infos{}, err
 	}
-
 	if pg.PageSize > 0 {
 		pageSize = pg.PageSize
 		db = db.Limit(pageSize)
@@ -34,9 +33,7 @@ func QueryPage(db *gorm.DB, pg paginator.Param, out interface{}) (paginator.Info
 			db = db.Offset(pageSize * (pageIndex - 1))
 		}
 	}
-
 	err = db.Find(out).Error
-
 	return paginator.Infos{
 		Total:     total,
 		PageIndex: pageIndex,
@@ -69,7 +66,7 @@ func QueryOne(db *gorm.DB, query M, out interface{}) error {
 
 // Update 根据id更新相应字段, db需提供model
 func Update(db *gorm.DB, id uint, value M) error {
-	if id == 0 || value == nil || len(value) == 0 {
+	if id == 0 || len(value) == 0 {
 		return ErrZeroOrEmptyValue
 	}
 	return db.Where("id=?", id).Update(value).Error
