@@ -14,11 +14,6 @@ var (
 	ErrZeroOrEmptyValue = errors.New("value must not be zero or empty!")
 )
 
-// Query 查询所有
-func Query(db *gorm.DB, out interface{}) error {
-	return db.Find(out).Error
-}
-
 // QueryPage 分页查询,db需提供model和条件, list需提供切片地址 如 &[]yourStruct{}
 // pg 如果均为默认参数,将不进行分页查询,将返回所有数据
 func QueryPage(db *gorm.DB, pg paginator.Param, out interface{}) (paginator.Infos, error) {
@@ -69,8 +64,12 @@ func QueryOne(db *gorm.DB, query map[string]interface{}, out interface{}) error 
 
 // Update 根据id更新相应字段, db需提供model
 func Update(db *gorm.DB, id uint, value interface{}) error {
-	if id == 0 {
+	return UpdateAny(db, M{"id": id}, value)
+}
+
+func UpdateAny(db *gorm.DB, query map[string]interface{}, value interface{}) error {
+	if len(query) == 0 {
 		return ErrZeroOrEmptyValue
 	}
-	return db.Where("id=?", id).Update(value).Error
+	return db.Where(query).Update(value).Error
 }
