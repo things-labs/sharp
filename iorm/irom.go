@@ -63,13 +63,13 @@ func QueryOne(db *gorm.DB, query map[string]interface{}, out interface{}) error 
 }
 
 // Update 根据id更新相应字段, db需提供model
-func Update(db *gorm.DB, id uint, value interface{}) error {
-	return UpdateAny(db, M{"id": id}, value)
+func Update(db *gorm.DB, id uint, attrs ...interface{}) error {
+	return UpdateAny(db, M{"id": id}, attrs...)
 }
 
-func UpdateAny(db *gorm.DB, query map[string]interface{}, value interface{}) error {
+func UpdateAny(db *gorm.DB, query map[string]interface{}, attrs ...interface{}) error {
 	if len(query) == 0 {
 		return ErrZeroOrEmptyValue
 	}
-	return db.Where(query).Update(value).Error
+	return db.Where(query).Update(attrs...).Error
 }
