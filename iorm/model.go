@@ -7,9 +7,6 @@ import (
 	icontext "github.com/thinkgos/assist/iorm/context"
 )
 
-// M 别名
-type M map[string]interface{}
-
 // GetDB get db
 func GetDB(ctx context.Context, defDB *gorm.DB) *gorm.DB {
 	if trans := icontext.FromTrans(ctx); trans != nil {

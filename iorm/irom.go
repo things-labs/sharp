@@ -7,6 +7,9 @@ import (
 	"github.com/thinkgos/assist/paginator"
 )
 
+// M 别名
+type M map[string]interface{}
+
 var (
 	ErrZeroOrEmptyValue = errors.New("value must not be zero or empty!")
 )
@@ -57,7 +60,7 @@ func QueryPageRelated(db *gorm.DB, pg paginator.Param,
 }
 
 // QueryOne 根据id更新相应字段
-func QueryOne(db *gorm.DB, query M, out interface{}) error {
+func QueryOne(db *gorm.DB, query map[string]interface{}, out interface{}) error {
 	if len(query) == 0 {
 		return db.First(out).Error
 	}
@@ -65,8 +68,8 @@ func QueryOne(db *gorm.DB, query M, out interface{}) error {
 }
 
 // Update 根据id更新相应字段, db需提供model
-func Update(db *gorm.DB, id uint, value M) error {
-	if id == 0 || len(value) == 0 {
+func Update(db *gorm.DB, id uint, value interface{}) error {
+	if id == 0 {
 		return ErrZeroOrEmptyValue
 	}
 	return db.Where("id=?", id).Update(value).Error
