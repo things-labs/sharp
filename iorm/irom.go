@@ -1,8 +1,6 @@
 package iorm
 
 import (
-	"errors"
-
 	"github.com/jinzhu/gorm"
 	"github.com/thinkgos/assist/paginator"
 )
@@ -10,11 +8,8 @@ import (
 // M 别名
 type M map[string]interface{}
 
-var (
-	ErrZeroOrEmptyValue = errors.New("value must not be zero or empty!")
-)
-
-// QueryPage 分页查询,db需提供model和条件, list需提供切片地址 如 &[]yourStruct{}
+// QueryPage 分页查询
+// db需提供model和条件, list需提供切片地址 如 &[]yourStruct{}
 // pg 如果均为默认参数,将不进行分页查询,将返回所有数据
 func QueryPage(db *gorm.DB, pg paginator.Param, out interface{}) (paginator.Infos, error) {
 	var total, pageIndex, pageSize int
@@ -41,7 +36,7 @@ func QueryPage(db *gorm.DB, pg paginator.Param, out interface{}) (paginator.Info
 }
 
 // QueryPageRelated 分页关联查询
-//db需提供model(包含主键)和条件, list需提供切片地址 如 &[]yourStruct{}
+// db需提供model(并包含主键)和条件, list需提供切片地址 如 &[]yourStruct{}
 // pg 如果均为默认参数,将不进行分页查询,将返回所有数据
 func QueryPageRelated(db *gorm.DB, pg paginator.Param,
 	out interface{}, foreignKeys ...string) error {
@@ -62,11 +57,14 @@ func QueryOne(db *gorm.DB, query map[string]interface{}, out interface{}) error 
 	return db.Where(query).First(out).Error
 }
 
-// Update 根据id更新相应字段, db需提供model
+// Update 根据id更新相应字段,
+// db需提供model
 func Update(db *gorm.DB, id uint, attrs ...interface{}) error {
 	return UpdateAny(db, M{"id": id}, attrs...)
 }
 
+// UpdateAny 根据query条件,更新相应字段,
+// db需提供model
 func UpdateAny(db *gorm.DB, query map[string]interface{}, attrs ...interface{}) error {
 	if len(query) == 0 {
 		return ErrZeroOrEmptyValue
