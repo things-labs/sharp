@@ -9,6 +9,13 @@ type Param struct {
 	PageSize  int `form:"pageSize" json:"pageSize"`
 }
 
+// Info 分页信息
+type Info struct {
+	PageIndex int `json:"pageIndex,omitempty"`
+	PageSize  int `json:"pageSize,omitempty"`
+	Total     int `json:"total"`
+}
+
 // Infos 分页信息
 type Infos struct {
 	PageIndex int         `json:"pageIndex,omitempty"`
