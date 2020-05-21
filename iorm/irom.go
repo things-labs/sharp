@@ -35,11 +35,31 @@ func QueryPage(db *gorm.DB, pg paginator.Param, out interface{}) (paginator.Info
 	}, err
 }
 
+func QueryPageAssociation(db *gorm.DB, pg paginator.Param, out interface{}, column string) (ifo paginator.Infos, err error) {
+	var pageIndex, pageSize int
+
+	total := db.Association(column).Count()
+	if pg.PageSize > 0 {
+		pageSize = pg.PageSize
+		db = db.Limit(pageSize)
+		if pg.PageIndex > 0 {
+			pageIndex = pg.PageIndex
+			db = db.Offset(pageSize * (pageIndex - 1))
+		}
+	}
+	err = db.Association(column).Find(out).Error
+	return paginator.Infos{
+		Total:     total,
+		PageIndex: pageIndex,
+		PageSize:  pageSize,
+		List:      out,
+	}, err
+}
+
 // QueryPageRelated 分页关联查询
 // db需提供model(并包含主键)和条件, list需提供切片地址 如 &[]yourStruct{}
 // pg 如果均为默认参数,将不进行分页查询,将返回所有数据
-func QueryPageRelated(db *gorm.DB, pg paginator.Param,
-	out interface{}, foreignKeys ...string) error {
+func QueryPageRelated(db *gorm.DB, pg paginator.Param, out interface{}, foreignKeys ...string) error {
 	if pg.PageSize > 0 {
 		db = db.Limit(pg.PageSize)
 		if pg.PageIndex > 0 {
