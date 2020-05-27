@@ -1,18 +1,18 @@
 package servers
 
 import (
+	"fmt"
 	"net/http"
 
-	"github.com/gin-gonic/gin"
+	"github.com/go-chi/render"
 )
 
-// Code custom code interface
 type Code interface {
-	String() string
+	fmt.Stringer
 	Value() int
 }
 
-// Response 错误信息回复基本格式
+// Response 回复基本格式
 type Response struct {
 	Code    int         `json:"code"`
 	Message string      `json:"message,omitempty"`
@@ -27,27 +27,30 @@ func dataField(data ...interface{}) interface{} {
 	return "{}"
 }
 
-// JSON 标准http status code应答
-func JSON(c *gin.Context, code int, data ...interface{}) {
-	c.JSON(code, &Response{
-		Code:    code,
-		Message: http.StatusText(code),
+// JSON 返回json信息,带标准回复
+func JSON(w http.ResponseWriter, r *http.Request, statusCode int, data ...interface{}) {
+	render.Status(r, statusCode)
+	render.JSON(w, r, &Response{
+		Code:    statusCode,
+		Message: http.StatusText(statusCode),
 		Data:    dataField(data...),
 	})
 }
 
-// JSONCustom http.StatusBadRequest式应答,自定义code码应答,一般给前端判断使用
-func JSONCustom(c *gin.Context, code Code, data ...interface{}) {
-	c.JSON(http.StatusBadRequest, &Response{
+// JSONCustom http.StatusBadRequest式应答,自定义code,提供给前端
+func JSONCustom(w http.ResponseWriter, r *http.Request, code Code, data ...interface{}) {
+	render.Status(r, http.StatusBadRequest)
+	render.JSON(w, r, &Response{
 		Code:    code.Value(),
 		Message: code.String(),
 		Data:    dataField(data...),
 	})
 }
 
-// JSONDetail http.StatusBadRequest式应答,含detail字段,调试使用
-func JSONDetail(c *gin.Context, err error, data ...interface{}) {
-	c.JSON(http.StatusBadRequest, &Response{
+// JSONDetail http.StatusBadRequest式应答,含detail字段,用于debug
+func JSONDetail(w http.ResponseWriter, r *http.Request, err error, data ...interface{}) {
+	render.Status(r, http.StatusBadRequest)
+	render.JSON(w, r, &Response{
 		http.StatusBadRequest,
 		http.StatusText(http.StatusBadRequest),
 		err.Error(),
