@@ -82,6 +82,8 @@ github.com/stretchr/testify v1.6.0 h1:jlIyCplCJFULU/01vCkhKuTyc3OorI3bJFuw6obfgh
 github.com/stretchr/testify v1.6.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
 github.com/thinkgos/render v0.1.0 h1:TqhchjGVT4U0mzT7TQcenMaCgrnX6B28WBDOWw1BA/Q=
 github.com/thinkgos/render v0.1.0/go.mod h1:epmoNnzvlSrp/YyKtm2j1rEMYqdgrPN4zWnQrnOE+ts=
+github.com/thinkgos/render v0.1.1 h1:QV3+FuB5NxlkXJeAoSZj3Dwtzm6ZFVfXgT41zNMQ/LE=
+github.com/thinkgos/render v0.1.1/go.mod h1:epmoNnzvlSrp/YyKtm2j1rEMYqdgrPN4zWnQrnOE+ts=
 github.com/ugorji/go v1.1.7 h1:/68gy2h+1mWMrwZFeD1kQialdSzAb432dtpeJ42ovdo=
 github.com/ugorji/go v1.1.7/go.mod h1:kZn38zHttfInRq0xu/PH0az30d+z6vm202qpg1oXVMw=
 github.com/ugorji/go/codec v1.1.7 h1:2SvQaVZ1ouYrrKKwoSk2pzd4A9evlKJb9oTL+OaLUSs=
