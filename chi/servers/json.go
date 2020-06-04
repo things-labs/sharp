@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/go-chi/render"
+	"github.com/thinkgos/render"
 )
 
 type Code interface {
@@ -29,8 +29,7 @@ func dataField(data ...interface{}) interface{} {
 
 // JSON 返回json信息,带标准回复
 func JSON(w http.ResponseWriter, r *http.Request, statusCode int, data ...interface{}) {
-	render.Status(r, statusCode)
-	render.JSON(w, r, &Response{
+	render.JSON(w, statusCode, &Response{
 		Code:    statusCode,
 		Message: http.StatusText(statusCode),
 		Data:    dataField(data...),
@@ -39,8 +38,7 @@ func JSON(w http.ResponseWriter, r *http.Request, statusCode int, data ...interf
 
 // JSONCustom http.StatusBadRequest式应答,自定义code,提供给前端
 func JSONCustom(w http.ResponseWriter, r *http.Request, code Code, data ...interface{}) {
-	render.Status(r, http.StatusBadRequest)
-	render.JSON(w, r, &Response{
+	render.JSON(w, http.StatusBadRequest, &Response{
 		Code:    code.Value(),
 		Message: code.String(),
 		Data:    dataField(data...),
@@ -49,8 +47,7 @@ func JSONCustom(w http.ResponseWriter, r *http.Request, code Code, data ...inter
 
 // JSONDetail http.StatusBadRequest式应答,含detail字段,用于debug
 func JSONDetail(w http.ResponseWriter, r *http.Request, err error, data ...interface{}) {
-	render.Status(r, http.StatusBadRequest)
-	render.JSON(w, r, &Response{
+	render.JSON(w, http.StatusBadRequest, &Response{
 		http.StatusBadRequest,
 		http.StatusText(http.StatusBadRequest),
 		err.Error(),
