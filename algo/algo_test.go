@@ -39,7 +39,7 @@ func TestSHA1(t *testing.T) {
 		want string
 	}{
 		{
-			name: "t1",
+			name: "sha1",
 			args: args{s: "thinkgos"},
 			want: "a36018b908e4add1e7e993599cc0cf9f26025c1f",
 		},
