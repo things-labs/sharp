@@ -22,7 +22,7 @@ func TestContainInt(t *testing.T) {
 			want: false,
 		},
 		{
-			name: "t1",
+			name: "contain",
 			args: args{
 				x: 4,
 				y: []int{2, 4, 6, 7, 1, 3},
@@ -58,7 +58,7 @@ func TestContainUint(t *testing.T) {
 			want: false,
 		},
 		{
-			name: "t1",
+			name: "contain",
 			args: args{
 				x: 4,
 				y: []uint{2, 4, 6, 7, 1, 3},
@@ -94,7 +94,7 @@ func TestContainInt8(t *testing.T) {
 			want: false,
 		},
 		{
-			name: "t1",
+			name: "contain",
 			args: args{
 				x: 4,
 				y: []int8{2, 4, 6, 7, 1, 3},
@@ -130,7 +130,7 @@ func TestContainUint8(t *testing.T) {
 			want: false,
 		},
 		{
-			name: "t1",
+			name: "contain",
 			args: args{
 				x: 4,
 				y: []uint8{2, 4, 6, 7, 1, 3},
@@ -166,7 +166,7 @@ func TestContainInt16(t *testing.T) {
 			want: false,
 		},
 		{
-			name: "t1",
+			name: "contain",
 			args: args{
 				x: 4,
 				y: []int16{2, 4, 6, 7, 1, 3},
@@ -202,7 +202,7 @@ func TestContainUint16(t *testing.T) {
 			want: false,
 		},
 		{
-			name: "t1",
+			name: "contain",
 			args: args{
 				x: 4,
 				y: []uint16{2, 4, 6, 7, 1, 3},
@@ -238,7 +238,7 @@ func TestContainInt32(t *testing.T) {
 			want: false,
 		},
 		{
-			name: "t1",
+			name: "contain",
 			args: args{
 				x: 4,
 				y: []int32{2, 4, 6, 7, 1, 3},
@@ -274,7 +274,7 @@ func TestContainUint32(t *testing.T) {
 			want: false,
 		},
 		{
-			name: "t1",
+			name: "contain",
 			args: args{
 				x: 4,
 				y: []uint32{2, 4, 6, 7, 1, 3},
@@ -310,7 +310,7 @@ func TestContainInt64(t *testing.T) {
 			want: false,
 		},
 		{
-			name: "t1",
+			name: "contain",
 			args: args{
 				x: 4,
 				y: []int64{5, 2, 4, 7, 6, 1},
@@ -346,7 +346,7 @@ func TestContainUint64(t *testing.T) {
 			want: false,
 		},
 		{
-			name: "t1",
+			name: "contain",
 			args: args{
 				x: 4,
 				y: []uint64{5, 2, 4, 7, 6, 1},
@@ -382,7 +382,7 @@ func TestContainFloat64(t *testing.T) {
 			want: false,
 		},
 		{
-			name: "t1",
+			name: "contain",
 			args: args{
 				x: 4.4,
 				y: []float64{2.3, 4.4, 6.7, 7.2, 1.9, 3.5},
@@ -418,7 +418,7 @@ func TestContain(t *testing.T) {
 			want: false,
 		},
 		{
-			name: "t1",
+			name: "contain",
 			args: args{
 				x: "iiinsomnia",
 				y: []interface{}{1, "test", "iiinsomnia", 2.9, true},
