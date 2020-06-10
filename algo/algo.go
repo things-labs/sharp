@@ -1,4 +1,4 @@
-// Package method
+// Package algo
 package algo
 
 import (
@@ -12,8 +12,10 @@ import (
 	"hash"
 )
 
+// Method algo method
 type Method string
 
+// algo method
 const (
 	MethodMD5    Method = "md5"
 	MethodSha1   Method = "sha1"

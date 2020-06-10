@@ -7,6 +7,7 @@ import (
 	"github.com/thinkgos/render"
 )
 
+// Code code interface
 type Code interface {
 	fmt.Stringer
 	Value() int

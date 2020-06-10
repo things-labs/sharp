@@ -4,4 +4,5 @@ import (
 	"errors"
 )
 
-var ErrValueNotFound = errors.New("value not found!")
+// ErrValueNotFound error defined
+var ErrValueNotFound = errors.New("value not found")

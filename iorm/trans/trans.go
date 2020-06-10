@@ -1,4 +1,4 @@
-// trans gorm 事务封装
+// Package trans gorm 事务封装
 package trans
 
 import (
@@ -37,10 +37,7 @@ func (a *Trans) Commit(trans interface{}) error {
 	if !ok {
 		return errors.New("unknown trans")
 	}
-	if err := tx.Commit().Error; err != nil {
-		return err
-	}
-	return nil
+	return tx.Commit().Error
 }
 
 // Rollback 回滚事务
@@ -49,10 +46,7 @@ func (a *Trans) Rollback(trans interface{}) error {
 	if !ok {
 		return errors.New("unknown trans")
 	}
-	if err := tx.Rollback().Error; err != nil {
-		return err
-	}
-	return nil
+	return tx.Rollback().Error
 }
 
 // ExecTrans 执行事务

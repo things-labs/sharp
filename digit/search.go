@@ -52,7 +52,7 @@ func SearchInt16s(a []int16, x int16) int {
 // Search returns the result of applying SearchInts to the receiver and x.
 func (p Uint16Slice) Search(x uint16) int { return SearchUint16s(p, x) }
 
-// SearchUints searches for x in a sorted slice of uint16s and returns the index
+// SearchUint16s searches for x in a sorted slice of uint16s and returns the index
 // as specified by Search. The return value is the index to insert x if x is
 // not present (it could be len(a)).
 // The slice must be sorted in ascending order.

@@ -36,6 +36,7 @@ func QueryPage(db *gorm.DB, pg paginator.Param, out interface{}) (paginator.Info
 	}, err
 }
 
+// QueryPageAssociation query page association
 func QueryPageAssociation(db *gorm.DB, pg paginator.Param, out interface{}, column string) (ifo paginator.Infos, err error) {
 	var pageIndex, pageSize int
 

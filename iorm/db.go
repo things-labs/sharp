@@ -1,4 +1,4 @@
-// Package assist
+// Package iorm
 package iorm
 
 import (

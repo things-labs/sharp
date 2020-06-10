@@ -2,10 +2,12 @@ package password
 
 import "golang.org/x/crypto/bcrypt"
 
+// BCrypt bcrypt password encryption
 type BCrypt struct {
 	key string
 }
 
+// NewBCrypt new bcrypt password encryption with key
 func NewBCrypt(privateKey string) *BCrypt {
 	if privateKey == "" {
 		privateKey = defaultPrivateKey
@@ -13,7 +15,7 @@ func NewBCrypt(privateKey string) *BCrypt {
 	return &BCrypt{privateKey}
 }
 
-// Hash 密码hash运算
+// Hash password hash encryption
 func (sf BCrypt) Hash(password string) (string, error) {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(sf.key+password), bcrypt.DefaultCost)
 	if err != nil {
@@ -23,7 +25,7 @@ func (sf BCrypt) Hash(password string) (string, error) {
 	return string(bytes), err
 }
 
-// Compare 密码hash验证
+// Compare password hash verification
 func (sf BCrypt) Compare(password, hash string) error {
 	return bcrypt.CompareHashAndPassword([]byte(hash), []byte(sf.key+password))
 }
