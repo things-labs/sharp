@@ -1,4 +1,4 @@
-module github.com/thinkgos/assist
+module github.com/thinkgos/sharp
 
 go 1.14
 

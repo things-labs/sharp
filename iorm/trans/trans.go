@@ -6,7 +6,7 @@ import (
 	"errors"
 
 	"github.com/jinzhu/gorm"
-	icontext "github.com/thinkgos/assist/iorm/context"
+	icontext "github.com/thinkgos/sharp/iorm/context"
 )
 
 // TransFunc 定义事务执行函数

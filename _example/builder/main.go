@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"runtime"
 
-	"github.com/thinkgos/assist/builder"
+	"github.com/thinkgos/sharp/builder"
 )
 
 func main() {

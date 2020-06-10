@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/jinzhu/gorm"
-	icontext "github.com/thinkgos/assist/iorm/context"
+	icontext "github.com/thinkgos/sharp/iorm/context"
 )
 
 // GetDB get db
