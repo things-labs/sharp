@@ -231,11 +231,122 @@ func DeleteUintAll(s []uint, e uint) []uint {
 	return tmpS
 }
 
-// ReverseBytes reverse []byte
-func ReverseBytes(b []byte) []byte {
-	for from, to := 0, len(b)-1; from < to; from, to = from+1, to-1 {
-		b[from], b[to] = b[to], b[from]
+// DeleteInt8All delete all int8 element from slice if it exist
+func DeleteInt8All(s []int8, e int8) []int8 {
+	if s == nil {
+		return s
 	}
 
-	return b
+	tmpS := make([]int8, 0, len(s))
+	for _, v := range s {
+		if v != e {
+			tmpS = append(tmpS, v)
+		}
+	}
+	return tmpS
+}
+
+// DeleteUint8All delete all uint8 element from slice if it exist
+func DeleteUint8All(s []uint8, e uint8) []uint8 {
+	if s == nil {
+		return s
+	}
+
+	tmpS := make([]uint8, 0, len(s))
+	for _, v := range s {
+		if v != e {
+			tmpS = append(tmpS, v)
+		}
+	}
+	return tmpS
+}
+
+// DeleteInt16All delete all int16 element from slice if it exist
+func DeleteInt16All(s []int16, e int16) []int16 {
+	if s == nil {
+		return s
+	}
+
+	tmpS := make([]int16, 0, len(s))
+	for _, v := range s {
+		if v != e {
+			tmpS = append(tmpS, v)
+		}
+	}
+	return tmpS
+}
+
+// DeleteUint16All delete all uint16 element from slice if it exist
+func DeleteUint16All(s []uint16, e uint16) []uint16 {
+	if s == nil {
+		return s
+	}
+
+	tmpS := make([]uint16, 0, len(s))
+	for _, v := range s {
+		if v != e {
+			tmpS = append(tmpS, v)
+		}
+	}
+	return tmpS
+}
+
+// DeleteInt32All delete all int32 element from slice if it exist
+func DeleteInt32All(s []int32, e int32) []int32 {
+	if s == nil {
+		return s
+	}
+
+	tmpS := make([]int32, 0, len(s))
+	for _, v := range s {
+		if v != e {
+			tmpS = append(tmpS, v)
+		}
+	}
+	return tmpS
+}
+
+// DeleteUint32All delete all uint32 element from slice if it exist
+func DeleteUint32All(s []uint32, e uint32) []uint32 {
+	if s == nil {
+		return s
+	}
+
+	tmpS := make([]uint32, 0, len(s))
+	for _, v := range s {
+		if v != e {
+			tmpS = append(tmpS, v)
+		}
+	}
+	return tmpS
+}
+
+// DeleteInt64All delete all int64 element from slice if it exist
+func DeleteInt64All(s []int64, e int64) []int64 {
+	if s == nil {
+		return s
+	}
+
+	tmpS := make([]int64, 0, len(s))
+	for _, v := range s {
+		if v != e {
+			tmpS = append(tmpS, v)
+		}
+	}
+	return tmpS
+}
+
+// DeleteUint64All delete all uint64 element from slice if it exist
+func DeleteUint64All(s []uint64, e uint64) []uint64 {
+	if s == nil {
+		return s
+	}
+
+	tmpS := make([]uint64, 0, len(s))
+	for _, v := range s {
+		if v != e {
+			tmpS = append(tmpS, v)
+		}
+	}
+	return tmpS
 }

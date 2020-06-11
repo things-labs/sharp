@@ -30,3 +30,12 @@ func BuildUint32(Byte0, Byte1, Byte2, Byte3 byte) uint32 {
 func BuildUint64(Lo32, Hi32 uint32) uint64 {
 	return uint64(Lo32) | uint64(Hi32)<<32
 }
+
+// ReverseBytes reverse []byte
+func ReverseBytes(b []byte) []byte {
+	for from, to := 0, len(b)-1; from < to; from, to = from+1, to-1 {
+		b[from], b[to] = b[to], b[from]
+	}
+
+	return b
+}

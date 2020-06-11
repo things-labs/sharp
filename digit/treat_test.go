@@ -558,21 +558,209 @@ func TestDeleteUintAll(t *testing.T) {
 	}
 }
 
-func TestReverseBytes(t *testing.T) {
+func TestDeleteInt8All(t *testing.T) {
 	type args struct {
-		b []byte
+		s []int8
+		e int8
 	}
 	tests := []struct {
 		name string
 		args args
-		want []byte
+		want []int8
 	}{
-		{"Reverse bytes", args{[]byte{1, 2, 3, 4, 5}}, []byte{5, 4, 3, 2, 1}},
+		{"从int8的切片中删除所有指定元素, 无指定元素值",
+			args{[]int8{1, 2, 2, 3}, 4}, []int8{1, 2, 2, 3}},
+		{"从int8的切片中删除所有指定元素, 有指定元素值",
+			args{[]int8{1, 2, 2, 3}, 2}, []int8{1, 3}},
+		{"从int8的切片中删除所有指定元素, 切片是个nil",
+			args{nil, 2}, nil},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := ReverseBytes(tt.args.b); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("ReverseBytes() = %v, want %v", got, tt.want)
+			if got := DeleteInt8All(tt.args.s, tt.args.e); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("DeleteInt8All() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestDeleteUint8All(t *testing.T) {
+	type args struct {
+		s []uint8
+		e uint8
+	}
+	tests := []struct {
+		name string
+		args args
+		want []uint8
+	}{
+		{"从uint8的切片中删除所有指定元素, 无指定元素值",
+			args{[]uint8{1, 2, 2, 3}, 4}, []uint8{1, 2, 2, 3}},
+		{"从uint8的切片中删除所有指定元素, 有指定元素值",
+			args{[]uint8{1, 2, 2, 3}, 2}, []uint8{1, 3}},
+		{"从uint8的切片中删除所有指定元素, 切片是个nil",
+			args{nil, 2}, nil},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := DeleteUint8All(tt.args.s, tt.args.e); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("DeleteUint8All() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestDeleteInt16All(t *testing.T) {
+	type args struct {
+		s []int16
+		e int16
+	}
+	tests := []struct {
+		name string
+		args args
+		want []int16
+	}{
+		{"从int16的切片中删除所有指定元素, 无指定元素值",
+			args{[]int16{1, 2, 2, 3}, 4}, []int16{1, 2, 2, 3}},
+		{"从int16的切片中删除所有指定元素, 有指定元素值",
+			args{[]int16{1, 2, 2, 3}, 2}, []int16{1, 3}},
+		{"从int16的切片中删除所有指定元素, 切片是个nil",
+			args{nil, 2}, nil},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := DeleteInt16All(tt.args.s, tt.args.e); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("DeleteInt16All() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestDeleteUint16All(t *testing.T) {
+	type args struct {
+		s []uint16
+		e uint16
+	}
+	tests := []struct {
+		name string
+		args args
+		want []uint16
+	}{
+		{"从uint16的切片中删除所有指定元素, 无指定元素值",
+			args{[]uint16{1, 2, 2, 3}, 4}, []uint16{1, 2, 2, 3}},
+		{"从uint16的切片中删除所有指定元素, 有指定元素值",
+			args{[]uint16{1, 2, 2, 3}, 2}, []uint16{1, 3}},
+		{"从uint16的切片中删除所有指定元素, 切片是个nil",
+			args{nil, 2}, nil},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := DeleteUint16All(tt.args.s, tt.args.e); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("DeleteUint16All() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestDeleteInt32All(t *testing.T) {
+	type args struct {
+		s []int32
+		e int32
+	}
+	tests := []struct {
+		name string
+		args args
+		want []int32
+	}{
+		{"从int32的切片中删除所有指定元素, 无指定元素值",
+			args{[]int32{1, 2, 2, 3}, 4}, []int32{1, 2, 2, 3}},
+		{"从int32的切片中删除所有指定元素, 有指定元素值",
+			args{[]int32{1, 2, 2, 3}, 2}, []int32{1, 3}},
+		{"从int32的切片中删除所有指定元素, 切片是个nil",
+			args{nil, 2}, nil},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := DeleteInt32All(tt.args.s, tt.args.e); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("DeleteInt32All() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestDeleteUint32All(t *testing.T) {
+	type args struct {
+		s []uint32
+		e uint32
+	}
+	tests := []struct {
+		name string
+		args args
+		want []uint32
+	}{
+		{"从uint32的切片中删除所有指定元素, 无指定元素值",
+			args{[]uint32{1, 2, 2, 3}, 4}, []uint32{1, 2, 2, 3}},
+		{"从uint32的切片中删除所有指定元素, 有指定元素值",
+			args{[]uint32{1, 2, 2, 3}, 2}, []uint32{1, 3}},
+		{"从uint32的切片中删除所有指定元素, 切片是个nil",
+			args{nil, 2}, nil},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := DeleteUint32All(tt.args.s, tt.args.e); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("DeleteUint32All() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestDeleteInt64All(t *testing.T) {
+	type args struct {
+		s []int64
+		e int64
+	}
+	tests := []struct {
+		name string
+		args args
+		want []int64
+	}{
+		{"从int64的切片中删除所有指定元素, 无指定元素值",
+			args{[]int64{1, 2, 2, 3}, 4}, []int64{1, 2, 2, 3}},
+		{"从int64的切片中删除所有指定元素, 有指定元素值",
+			args{[]int64{1, 2, 2, 3}, 2}, []int64{1, 3}},
+		{"从int64的切片中删除所有指定元素, 切片是个nil",
+			args{nil, 2}, nil},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := DeleteInt64All(tt.args.s, tt.args.e); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("DeleteInt64All() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestDeleteUint64All(t *testing.T) {
+	type args struct {
+		s []uint64
+		e uint64
+	}
+	tests := []struct {
+		name string
+		args args
+		want []uint64
+	}{
+		{"从uint64的切片中删除所有指定元素, 无指定元素值",
+			args{[]uint64{1, 2, 2, 3}, 4}, []uint64{1, 2, 2, 3}},
+		{"从uint64的切片中删除所有指定元素, 有指定元素值",
+			args{[]uint64{1, 2, 2, 3}, 2}, []uint64{1, 3}},
+		{"从uint64的切片中删除所有指定元素, 切片是个nil",
+			args{nil, 2}, nil},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := DeleteUint64All(tt.args.s, tt.args.e); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("DeleteUint64All() = %v, want %v", got, tt.want)
 			}
 		})
 	}

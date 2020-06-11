@@ -2,6 +2,7 @@
 package digit
 
 import (
+	"reflect"
 	"testing"
 )
 
@@ -148,6 +149,26 @@ func TestBuildUint64(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := BuildUint64(tt.args.Lo32, tt.args.Hi32); got != tt.want {
 				t.Errorf("BuildUint64() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestReverseBytes(t *testing.T) {
+	type args struct {
+		b []byte
+	}
+	tests := []struct {
+		name string
+		args args
+		want []byte
+	}{
+		{"Reverse bytes", args{[]byte{1, 2, 3, 4, 5}}, []byte{5, 4, 3, 2, 1}},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := ReverseBytes(tt.args.b); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("ReverseBytes() = %v, want %v", got, tt.want)
 			}
 		})
 	}
