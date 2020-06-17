@@ -28,6 +28,15 @@ func dataField(data ...interface{}) interface{} {
 	return "{}"
 }
 
+// JSONs 标准http status code应答
+func JSONs(w http.ResponseWriter, httpCode int, code Code, data ...interface{}) {
+	render.JSON(w, httpCode, &Response{
+		Code:    code.Value(),
+		Message: code.String(),
+		Data:    dataField(data...),
+	})
+}
+
 // JSON 返回json信息,带标准回复
 func JSON(w http.ResponseWriter, statusCode int, data ...interface{}) {
 	render.JSON(w, statusCode, &Response{

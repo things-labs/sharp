@@ -28,6 +28,15 @@ func dataField(data ...interface{}) interface{} {
 	return "{}"
 }
 
+// JSONs 标准http status code应答
+func JSONs(c *gin.Context, httpCode int, code Code, data ...interface{}) {
+	c.JSON(httpCode, &Response{
+		Code:    code.Value(),
+		Message: code.String(),
+		Data:    dataField(data...),
+	})
+}
+
 // JSON 标准http status code应答
 func JSON(c *gin.Context, code int, data ...interface{}) {
 	c.JSON(code, &Response{
