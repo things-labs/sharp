@@ -109,3 +109,9 @@ func IsExist(path string) bool {
 	_, err := os.Stat(path)
 	return err == nil || os.IsExist(err)
 }
+
+// HasPermission returns a boolean indicating whether that permission is allowed.
+func HasPermission(name string) bool {
+	_, err := os.Stat(name)
+	return !os.IsPermission(err)
+}
