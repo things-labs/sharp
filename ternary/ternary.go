@@ -7,7 +7,14 @@ func If(condition bool, trueVal, falseVal interface{}) interface{} {
 	return falseVal
 }
 
-func IfInt(condition bool, trueVal, falseVal int64) int64 {
+func IfInt(condition bool, trueVal, falseVal int) int {
+	if condition {
+		return trueVal
+	}
+	return falseVal
+}
+
+func IfInt64(condition bool, trueVal, falseVal int64) int64 {
 	if condition {
 		return trueVal
 	}
