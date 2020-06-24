@@ -16,15 +16,6 @@ type Info struct {
 	Total     int `json:"total"`
 }
 
-// Infos 分页信息
-// Deprecated: 弃用
-type Infos struct {
-	PageIndex int         `json:"pageIndex,omitempty"`
-	PageSize  int         `json:"pageSize,omitempty"`
-	Total     int         `json:"total"`
-	List      interface{} `json:"list"`
-}
-
 // DefaultParam 默认分页参数值
 func DefaultParam() Param {
 	return Param{1, DefaultPageSize}

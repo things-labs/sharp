@@ -35,23 +35,6 @@ func QueryPages(db *gorm.DB, pg paginator.Param, out interface{}) (paginator.Inf
 	}, err
 }
 
-// QueryPage 分页查询
-// db需提供model和条件, list需提供切片地址 如 &[]yourStruct{}
-// pg 如果均为默认参数,将不进行分页查询,将返回所有数据
-// Deprecated: 弃用
-func QueryPage(db *gorm.DB, pg paginator.Param, out interface{}) (paginator.Infos, error) {
-	info, err := QueryPages(db, pg, out)
-	if err != nil {
-		return paginator.Infos{}, err
-	}
-	return paginator.Infos{
-		PageIndex: info.PageIndex,
-		PageSize:  info.PageSize,
-		Total:     info.Total,
-		List:      out,
-	}, err
-}
-
 // QueryPageAssociation query page association
 func QueryPagesAssociation(db *gorm.DB, pg paginator.Param, out interface{}, column string) (paginator.Info, error) {
 	var pageIndex, pageSize int
@@ -71,21 +54,6 @@ func QueryPagesAssociation(db *gorm.DB, pg paginator.Param, out interface{}, col
 		PageIndex: pageIndex,
 		PageSize:  pageSize,
 	}, err
-}
-
-// QueryPageAssociation query page association
-// Deprecated: 弃用
-func QueryPageAssociation(db *gorm.DB, pg paginator.Param, out interface{}, column string) (paginator.Infos, error) {
-	info, err := QueryPagesAssociation(db, pg, out, column)
-	if err != nil {
-		return paginator.Infos{}, err
-	}
-	return paginator.Infos{
-		PageIndex: info.PageIndex,
-		PageSize:  info.PageSize,
-		Total:     info.Total,
-		List:      out,
-	}, nil
 }
 
 // QueryPageRelated 分页关联查询
