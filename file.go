@@ -13,7 +13,7 @@
 // License for the specific language governing permissions and limitations
 // under the License.
 
-// Package sharp
+// Package sharp base sharp tool
 package sharp
 
 import (

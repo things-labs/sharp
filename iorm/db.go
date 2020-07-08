@@ -1,4 +1,4 @@
-// Package iorm
+// Package iorm implement orm sub function
 package iorm
 
 import (
@@ -8,6 +8,7 @@ import (
 	"strings"
 )
 
+// db
 const (
 	MySQL    = "mysql"
 	Postgres = "postgres"

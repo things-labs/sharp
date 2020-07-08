@@ -18,7 +18,7 @@ import (
 	"golang.org/x/image/bmp"
 )
 
-// 支持四种图片二维码生成
+// 扩展名,支持四种图片二维码生成
 const (
 	ExtJPG = ".jpg"
 	ExtPNG = ".png"
@@ -26,16 +26,17 @@ const (
 	ExtBMP = ".bmp"
 )
 
-// 元信息
+// MetaInfo 元信息
 type MetaInfo struct {
-	Content string
+	Content string // 内容
 	Level   qr.ErrorCorrectionLevel
 	Mode    qr.Encoding
 	Width   int
 	Height  int
-	Ext     string
+	Ext     string // 命名扩展名
 }
 
+// Generate generate to barcode.Barcode
 func (sf *MetaInfo) Generate() (barcode.Barcode, error) {
 	code, err := qr.Encode(sf.Content, sf.Level, sf.Mode)
 	if err != nil {
@@ -44,6 +45,7 @@ func (sf *MetaInfo) Generate() (barcode.Barcode, error) {
 	return barcode.Scale(code, sf.Width, sf.Height)
 }
 
+// GenerateToBytes generate to byte
 func (sf *MetaInfo) GenerateToBytes() ([]byte, string, error) {
 	if !strext.ContainsFold([]string{ExtJPG, ExtPNG, ExtGIF, ExtBMP}, sf.Ext) {
 		return nil, "", fmt.Errorf("not support image format: %s", sf.Ext)

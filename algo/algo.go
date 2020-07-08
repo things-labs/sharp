@@ -1,4 +1,4 @@
-// Package algo
+// Package algo implement common api
 package algo
 
 import (

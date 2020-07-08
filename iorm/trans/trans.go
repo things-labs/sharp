@@ -9,16 +9,16 @@ import (
 	icontext "github.com/thinkgos/sharp/iorm/context"
 )
 
-// TransFunc 定义事务执行函数
-type TransFunc func(context.Context) error
+// Func 定义事务执行函数
+type Func func(context.Context) error
 
 // Trans 事务管理
 type Trans struct {
 	db *gorm.DB
 }
 
-// NewTrans 创建事务管理实例
-func NewTrans(db *gorm.DB) *Trans {
+// New 创建事务管理实例
+func New(db *gorm.DB) *Trans {
 	return &Trans{db}
 }
 
@@ -50,12 +50,12 @@ func (a *Trans) Rollback(trans interface{}) error {
 }
 
 // ExecTrans 执行事务
-func ExecTrans(ctx context.Context, db *gorm.DB, tf TransFunc) error {
+func ExecTrans(ctx context.Context, db *gorm.DB, tf Func) error {
 	if trans := icontext.FromTrans(ctx); trans != nil {
 		return tf(ctx)
 	}
 
-	transModel := NewTrans(db)
+	transModel := New(db)
 	trans, err := transModel.Begin()
 	if err != nil {
 		return err
@@ -78,7 +78,7 @@ func ExecTrans(ctx context.Context, db *gorm.DB, tf TransFunc) error {
 }
 
 // ExecTransWithLock 执行事务（加锁）
-func ExecTransWithLock(ctx context.Context, db *gorm.DB, cb TransFunc) error {
+func ExecTransWithLock(ctx context.Context, db *gorm.DB, cb Func) error {
 	if !icontext.FromTransLock(ctx) {
 		ctx = icontext.NewTransLock(ctx)
 	}

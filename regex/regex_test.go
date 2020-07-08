@@ -50,9 +50,9 @@ func TestIsUrl(t *testing.T) {
 		"http://example":                             true,
 	}
 	for u, r := range urls {
-		b := IsUrl(u)
+		b := IsURL(u)
 		if b != r {
-			t.Errorf("IsUrl:\n Expect => %v\n Got => %v\n", r, b)
+			t.Errorf("IsURL:\n Expect => %v\n Got => %v\n", r, b)
 		}
 	}
 }
