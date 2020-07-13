@@ -2,12 +2,14 @@ package password
 
 import "golang.org/x/crypto/bcrypt"
 
+var _ Verify = BCrypt{}
+
 // BCrypt bcrypt password encryption
 type BCrypt struct {
 	key string
 }
 
-// NewBCrypt new bcrypt password encryption with key
+// NewBCrypt new bcrypt password encryption with key,if key empty use defaultPrivateKey.
 func NewBCrypt(privateKey string) *BCrypt {
 	if privateKey == "" {
 		privateKey = defaultPrivateKey

@@ -6,6 +6,8 @@ import (
 	"io"
 )
 
+var _ Verify = Simple{}
+
 // Simple simple password encryption
 type Simple struct {
 	key string

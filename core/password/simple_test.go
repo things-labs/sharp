@@ -2,19 +2,17 @@ package password
 
 import (
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestSimple(t *testing.T) {
 	org := "hahaha"
 	cpt := NewSimple("")
-	dst, err := cpt.Hash(org)
-	if err != nil {
-		t.Fatalf("hash, %v", err)
-	}
 
-	if err := cpt.Compare(org, dst); err != nil {
-		t.Fatalf("Compare, %v", err)
-	}
+	dst, err := cpt.Hash(org)
+	require.Nil(t, err)
+	require.Nil(t, cpt.Compare(org, dst))
 }
 
 func BenchmarkSimple_Hash(b *testing.B) {
