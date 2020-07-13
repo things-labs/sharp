@@ -2,6 +2,7 @@ package qrcode
 
 import (
 	"bytes"
+	"encoding/base64"
 	"fmt"
 	"image/gif"
 	"image/jpeg"
@@ -84,4 +85,25 @@ func (sf *MetaInfo) GenerateToFile(path string) (string, error) {
 		return filename, nil
 	}
 	return filename, ioutil.WriteFile(dst, data, 0664)
+}
+
+// GenerateToImageB64 generate QR code to base images string, return base64 image string and filename
+// base64 images string format like:
+// data: image/png;base64,xxxxxxxxxx
+func (sf *MetaInfo) GenerateToImageB64() (string, string, error) {
+	b64, filename, err := sf.GenerateToBase64()
+	if err != nil {
+		return "", "", err
+	}
+	return fmt.Sprintf("data:image/%s;base64,%s",
+		strings.TrimLeft(sf.Ext, "."), b64), filename, nil
+}
+
+// GenerateToImageB64 generate QR code to base64 string, return base64 string and filename
+func (sf MetaInfo) GenerateToBase64() (string, string, error) {
+	data, filename, err := sf.GenerateToBytes()
+	if err != nil {
+		return "", "", err
+	}
+	return base64.StdEncoding.EncodeToString(data), filename, nil
 }
