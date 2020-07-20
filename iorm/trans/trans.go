@@ -5,8 +5,8 @@ import (
 	"context"
 	"errors"
 
-	"github.com/jinzhu/gorm"
 	icontext "github.com/thinkgos/sharp/iorm/context"
+	"gorm.io/gorm"
 )
 
 // Func 定义事务执行函数

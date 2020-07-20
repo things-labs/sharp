@@ -11,9 +11,9 @@ type Param struct {
 
 // Info 分页一些信息
 type Info struct {
-	PageIndex int `json:"pageIndex,omitempty"`
-	PageSize  int `json:"pageSize,omitempty"`
-	Total     int `json:"total"`
+	PageIndex int   `json:"pageIndex,omitempty"`
+	PageSize  int   `json:"pageSize,omitempty"`
+	Total     int64 `json:"total"`
 }
 
 // DefaultParam 默认分页参数值
