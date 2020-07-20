@@ -13,8 +13,8 @@ import (
 
 	"github.com/boombuler/barcode"
 	"github.com/boombuler/barcode/qr"
-	"github.com/thinkgos/sharp/v1"
-	"github.com/thinkgos/sharp/v1/algo"
+	"github.com/thinkgos/sharp/v2"
+	"github.com/thinkgos/sharp/v2/algo"
 	"github.com/thinkgos/strext"
 	"golang.org/x/image/bmp"
 )
