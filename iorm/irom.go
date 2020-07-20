@@ -3,7 +3,7 @@ package iorm
 import (
 	"gorm.io/gorm"
 
-	"github.com/thinkgos/sharp/core/paginator"
+	"github.com/thinkgos/sharp/v1/core/paginator"
 )
 
 // M 别名

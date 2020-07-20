@@ -1,4 +1,4 @@
-module github.com/thinkgos/sharp
+module github.com/thinkgos/sharp/v1
 
 go 1.14
 

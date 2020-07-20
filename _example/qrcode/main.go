@@ -5,7 +5,7 @@ import (
 
 	"github.com/boombuler/barcode/qr"
 
-	"github.com/thinkgos/sharp/qrcode"
+	"github.com/thinkgos/sharp/v1/qrcode"
 )
 
 func main() {

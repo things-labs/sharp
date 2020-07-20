@@ -3,7 +3,7 @@ package iorm
 import (
 	"context"
 
-	icontext "github.com/thinkgos/sharp/iorm/context"
+	icontext "github.com/thinkgos/sharp/v1/iorm/context"
 	"gorm.io/gorm"
 )
 
