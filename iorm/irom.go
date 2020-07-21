@@ -92,3 +92,18 @@ func UpdateAny(db *gorm.DB, query map[string]interface{}, column string, value i
 	}
 	return db.Where(query).Update(column, value).Error
 }
+
+// Updates 根据id更新相应字段
+// db需提供model
+func Updates(db *gorm.DB, id uint, values interface{}) error {
+	return db.Where("id=?", id).Updates(values).Error
+}
+
+// UpdatesAny 根据query条件,更新相应字段
+// db需提供model
+func UpdatesAny(db *gorm.DB, query map[string]interface{}, values interface{}) error {
+	if len(query) == 0 {
+		return ErrZeroOrEmptyValue
+	}
+	return db.Where(query).Updates(values).Error
+}
