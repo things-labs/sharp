@@ -5,7 +5,6 @@ import (
 	"context"
 	"errors"
 
-	icontext "github.com/thinkgos/sharp/v2/iorm/context"
 	"gorm.io/gorm"
 )
 
@@ -50,9 +49,9 @@ func (a *Trans) Rollback(trans interface{}) error {
 }
 
 // ExecTrans 执行事务
-func ExecTrans(ctx context.Context, db *gorm.DB, tf Func) error {
-	if trans := icontext.FromTrans(ctx); trans != nil {
-		return tf(ctx)
+func ExecTrans(ctx context.Context, db *gorm.DB, f Func) error {
+	if trans := FromTransCtx(ctx); trans != nil {
+		return f(ctx)
 	}
 
 	transModel := New(db)
@@ -68,8 +67,8 @@ func ExecTrans(ctx context.Context, db *gorm.DB, tf Func) error {
 		}
 	}()
 
-	ctx = icontext.NewTrans(ctx, trans)
-	err = tf(ctx)
+	ctx = NewTransCtx(ctx, trans)
+	err = f(ctx)
 	if err != nil {
 		_ = transModel.Rollback(trans)
 		return err
@@ -79,8 +78,8 @@ func ExecTrans(ctx context.Context, db *gorm.DB, tf Func) error {
 
 // ExecTransWithLock 执行事务（加锁）
 func ExecTransWithLock(ctx context.Context, db *gorm.DB, cb Func) error {
-	if !icontext.FromTransLock(ctx) {
-		ctx = icontext.NewTransLock(ctx)
+	if !FromTransLockCtx(ctx) {
+		ctx = NewTransLockCtx(ctx)
 	}
 	return ExecTrans(ctx, db, cb)
 }

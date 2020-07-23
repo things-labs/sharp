@@ -58,11 +58,5 @@ func QueryPagesAssociation(db *gorm.DB, pg paginator.Param, out interface{}, col
 // db需提供model(并包含主键)和条件, list需提供切片地址 如 &[]yourStruct{}
 // pg 如果均为默认参数,将不进行分页查询,将返回所有数据
 func QueryPageRelated(db *gorm.DB, pg paginator.Param, out interface{}, foreignKeys string) error {
-	if pg.PageSize > 0 {
-		db = db.Limit(pg.PageSize)
-		if pg.PageIndex > 0 {
-			db = db.Offset(pg.PageSize * (pg.PageIndex - 1))
-		}
-	}
-	return db.Association(foreignKeys).Find(out)
+	return db.Scopes(Paginate(pg)).Association(foreignKeys).Find(out)
 }
