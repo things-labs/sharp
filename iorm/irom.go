@@ -6,9 +6,6 @@ import (
 	"github.com/thinkgos/sharp/v2/core/paginator"
 )
 
-// M 别名
-type M map[string]interface{}
-
 // QueryPages 分页查询
 // db需提供model和条件, list需提供切片地址 如 &[]yourStruct{}
 // pg 如果均为默认参数,将不进行分页查询,将返回所有数据
@@ -68,42 +65,4 @@ func QueryPageRelated(db *gorm.DB, pg paginator.Param, out interface{}, foreignK
 		}
 	}
 	return db.Association(foreignKeys).Find(out)
-}
-
-// QueryOne 根据id更新相应字段
-func QueryOne(db *gorm.DB, query map[string]interface{}, out interface{}) error {
-	if len(query) == 0 {
-		return db.First(out).Error
-	}
-	return db.Where(query).First(out).Error
-}
-
-// Update 根据id更新相应字段,
-// db需提供model
-func Update(db *gorm.DB, id uint, column string, value interface{}) error {
-	return db.Where("id=?", id).Update(column, value).Error
-}
-
-// UpdateAny 根据query条件,更新相应字段,
-// db需提供model
-func UpdateAny(db *gorm.DB, query map[string]interface{}, column string, value interface{}) error {
-	if len(query) == 0 {
-		return ErrZeroOrEmptyValue
-	}
-	return db.Where(query).Update(column, value).Error
-}
-
-// Updates 根据id更新相应字段
-// db需提供model
-func Updates(db *gorm.DB, id uint, values interface{}) error {
-	return db.Where("id=?", id).Updates(values).Error
-}
-
-// UpdatesAny 根据query条件,更新相应字段
-// db需提供model
-func UpdatesAny(db *gorm.DB, query map[string]interface{}, values interface{}) error {
-	if len(query) == 0 {
-		return ErrZeroOrEmptyValue
-	}
-	return db.Where(query).Updates(values).Error
 }
