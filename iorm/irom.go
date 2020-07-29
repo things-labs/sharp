@@ -53,10 +53,3 @@ func QueryPagesAssociation(db *gorm.DB, pg paginator.Param, out interface{}, col
 		PageSize:  pageSize,
 	}, err
 }
-
-// QueryPageRelated 分页关联查询
-// db需提供model(并包含主键)和条件, list需提供切片地址 如 &[]yourStruct{}
-// pg 如果均为默认参数,将不进行分页查询,将返回所有数据
-func QueryPageRelated(db *gorm.DB, pg paginator.Param, out interface{}, foreignKeys string) error {
-	return db.Scopes(Paginate(pg)).Association(foreignKeys).Find(out)
-}
