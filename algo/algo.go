@@ -1,3 +1,7 @@
+// Copyright 2020 thinkgos.  All rights reserved.
+// Use of this source code is governed by a MIT style
+// license that can be found in the LICENSE file.
+
 // Package algo implement common api
 package algo
 
@@ -12,9 +16,6 @@ import (
 	"hash"
 )
 
-// Method algo method
-type Method string
-
 // algo method
 const (
 	MethodMD5    Method = "md5"
@@ -25,21 +26,24 @@ const (
 	MethodSha512 Method = "sha512"
 )
 
-// MD5 calculate the md5 hash of a string.
+// Method algo method
+type Method string
+
+// MD5 calculate the md5 hash of a hex string.
 func MD5(s string) string {
 	h := md5.New()
-	h.Write([]byte(s))
+	h.Write([]byte(s)) // nolint: errCheck
 	return hex.EncodeToString(h.Sum(nil))
 }
 
-// SHA1 calculate the sha1 hash of a string.
+// SHA1 calculate the sha1 hash of a hex string.
 func SHA1(s string) string {
 	h := sha1.New()
-	h.Write([]byte(s))
+	h.Write([]byte(s)) // nolint: errCheck
 	return hex.EncodeToString(h.Sum(nil))
 }
 
-// Hash Generate a hash value, expects: MD5, SHA1, SHA224, SHA256, SHA384, SHA512.
+// Hash Generate a hex hash value, expects: MD5, SHA1, SHA224, SHA256, SHA384, SHA512.
 func Hash(method Method, s string) string {
 	var h hash.Hash
 
@@ -59,11 +63,11 @@ func Hash(method Method, s string) string {
 	default:
 		return s
 	}
-	h.Write([]byte(s))
+	h.Write([]byte(s)) // nolint: errCheck
 	return hex.EncodeToString(h.Sum(nil))
 }
 
-// Hmac Generate a keyed hash value, expects: MD5, SHA1, SHA224, SHA256, SHA384, SHA512.
+// Hmac Generate a hex hash value with the key, expects: MD5, SHA1, SHA224, SHA256, SHA384, SHA512.
 func Hmac(method Method, s, key string) string {
 	var mac hash.Hash
 
@@ -83,7 +87,7 @@ func Hmac(method Method, s, key string) string {
 	default:
 		return s
 	}
-	mac.Write([]byte(s))
+	mac.Write([]byte(s)) // nolint: errCheck
 	return hex.EncodeToString(mac.Sum(nil))
 }
 
