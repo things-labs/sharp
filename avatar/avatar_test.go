@@ -28,7 +28,6 @@ func Test_RandomImage(t *testing.T) {
 	avt.Height = 0
 	_, err = avt.RandomImage([]byte("gogs@local"))
 	require.Error(t, err)
-
 }
 
 func Test_PrepareWithPNG(t *testing.T) {
@@ -40,11 +39,11 @@ func Test_PrepareWithPNG(t *testing.T) {
 	data, err := ioutil.ReadFile("testdata/avatar.png")
 	require.NoError(t, err)
 
-	imgPtr, err := avt.Prepare(data)
+	img, err := avt.Prepare(data)
 	require.NoError(t, err)
 
-	assert.Equal(t, 290, imgPtr.Bounds().Max.X)
-	assert.Equal(t, 290, imgPtr.Bounds().Max.Y)
+	assert.Equal(t, 290, img.Bounds().Max.X)
+	assert.Equal(t, 290, img.Bounds().Max.Y)
 }
 
 func Test_PrepareWithJPEG(t *testing.T) {
@@ -53,7 +52,7 @@ func Test_PrepareWithJPEG(t *testing.T) {
 		4096, 4096,
 	}
 	data, err := ioutil.ReadFile("testdata/avatar.jpeg")
-	assert.NoError(t, err)
+	require.NoError(t, err)
 
 	imgPtr, err := avt.Prepare(data)
 	require.NoError(t, err)
@@ -68,7 +67,7 @@ func Test_PrepareWithInvalidImage(t *testing.T) {
 		5, 5,
 	}
 	_, err := avt.Prepare([]byte{})
-	assert.EqualError(t, err, "DecodeConfig: image: unknown format")
+	require.EqualError(t, err, "DecodeConfig: image: unknown format")
 }
 
 func Test_PrepareWithInvalidImageSize(t *testing.T) {
@@ -77,8 +76,13 @@ func Test_PrepareWithInvalidImageSize(t *testing.T) {
 		5, 5,
 	}
 	data, err := ioutil.ReadFile("testdata/avatar.png")
-	assert.NoError(t, err)
+	require.NoError(t, err)
 
 	_, err = avt.Prepare(data)
 	assert.EqualError(t, err, "Image width is too large: 10 > 5")
+
+	avt.MaxWidth = 4095
+
+	_, err = avt.Prepare(data)
+	assert.EqualError(t, err, "Image height is too large: 10 > 5")
 }

@@ -60,7 +60,8 @@ func (sf *Avatar) RandomImage(data []byte) (image.Image, error) {
 // Prepare accepts a byte slice as input, validates it contains an image of an
 // acceptable format, and crops and resizes it appropriately.
 func (sf Avatar) Prepare(data []byte) (image.Image, error) {
-	imgCfg, _, err := image.DecodeConfig(bytes.NewReader(data))
+	reader := bytes.NewReader(data)
+	imgCfg, _, err := image.DecodeConfig(reader)
 	if err != nil {
 		return nil, fmt.Errorf("DecodeConfig: %v", err)
 	}
@@ -70,8 +71,8 @@ func (sf Avatar) Prepare(data []byte) (image.Image, error) {
 	if imgCfg.Height > sf.MaxHeight {
 		return nil, fmt.Errorf("Image height is too large: %d > %d", imgCfg.Height, sf.MaxHeight)
 	}
-
-	img, _, err := image.Decode(bytes.NewReader(data))
+	reader.Reset(data)
+	img, _, err := image.Decode(reader)
 	if err != nil {
 		return nil, fmt.Errorf("Decode: %v", err)
 	}
