@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestComplexity_IsComplexEnough(t *testing.T) {
@@ -49,7 +50,7 @@ func TestComplexity_Generate(t *testing.T) {
 		testComplextity(modes)
 		for i := 0; i < maxCount; i++ {
 			pwd, err := Generate(pwdLen)
-			assert.NoError(t, err)
+			require.NoError(t, err)
 			assert.Equal(t, pwdLen, len(pwd))
 			assert.True(t, IsComplexEnough(pwd), "Failed complexities with modes %+v for generated: %s", modes, pwd)
 		}
