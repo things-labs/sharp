@@ -13,7 +13,6 @@
 
 ## Feature 
 - [top]() 常用未分类
-- [algo]() 常用算法加密
 - [avatar]() 头像随机生成和裁剪
 - [builder]() 常用外部编译ldflags指定
 - [chi]() 常用net/http封装
@@ -21,13 +20,10 @@
 - [core]() 无依赖核心包
   - [logger]() 日志包
   - [paginator]() 分页
-  - [password]() 密码加密和检查
-
 - [gin]() 常用gin封装
 - [iorm]() 常用gorm封装
 - [qrcode]() 常用二维码生成
-- [regex]() 常用正则表达式
-- [ternary]() 常用三目运算
+
 
 ## string extend package
  @see [strext](https://github.com/thinkgos/strext)
