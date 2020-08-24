@@ -2,9 +2,7 @@ package qrcode
 
 import (
 	"bytes"
-	"crypto/sha1"
 	"encoding/base64"
-	"encoding/hex"
 	"fmt"
 	"image/gif"
 	"image/jpeg"
@@ -15,10 +13,10 @@ import (
 
 	"github.com/boombuler/barcode"
 	"github.com/boombuler/barcode/qr"
+	"github.com/thinkgos/go-core-package/extos"
+	"github.com/thinkgos/go-core-package/lib/algo"
 	"github.com/thinkgos/strext"
 	"golang.org/x/image/bmp"
-
-	"github.com/thinkgos/sharp/v2"
 )
 
 // 扩展名,支持四种图片二维码生成
@@ -73,7 +71,7 @@ func (sf *MetaInfo) GenerateToBytes() ([]byte, string, error) {
 	if err != nil {
 		return nil, "", err
 	}
-	return buf.Bytes(), sha1HEX(sf.Content) + sf.Ext, nil
+	return buf.Bytes(), algo.SHA1(sf.Content) + sf.Ext, nil
 }
 
 // GenerateToFile generate QR code, return filename
@@ -83,7 +81,7 @@ func (sf *MetaInfo) GenerateToFile(path string) (string, error) {
 		return "", err
 	}
 	dst := filepath.Join(path, filename)
-	if sharp.IsExist(dst) {
+	if extos.IsExist(dst) {
 		return filename, nil
 	}
 	return filename, ioutil.WriteFile(dst, data, 0664)
@@ -108,11 +106,4 @@ func (sf MetaInfo) GenerateToBase64() (string, string, error) {
 		return "", "", err
 	}
 	return base64.StdEncoding.EncodeToString(data), filename, nil
-}
-
-// sha1HEX calculate the sha1 hash of a hex string.
-func sha1HEX(s string) string {
-	h := sha1.New()
-	h.Write([]byte(s)) // nolint: errCheck
-	return hex.EncodeToString(h.Sum(nil))
 }
