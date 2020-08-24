@@ -3,7 +3,7 @@ package iorm
 import (
 	"gorm.io/gorm"
 
-	"github.com/thinkgos/sharp/v2/core/paginator"
+	"github.com/thinkgos/sharp/core/paginator"
 )
 
 // QueryPages 分页查询

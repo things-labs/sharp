@@ -1,4 +1,4 @@
-module github.com/thinkgos/sharp/v2
+module github.com/thinkgos/sharp
 
 go 1.14
 
@@ -19,5 +19,5 @@ require (
 	golang.org/x/image v0.0.0-20200801110659-972c09e46d76
 	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
 	gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776 // indirect
-	gorm.io/gorm v0.2.33
+	gorm.io/gorm v0.2.36
 )

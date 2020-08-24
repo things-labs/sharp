@@ -5,8 +5,8 @@ import (
 
 	"gorm.io/gorm"
 
-	"github.com/thinkgos/sharp/v2/core/paginator"
-	"github.com/thinkgos/sharp/v2/iorm/trans"
+	"github.com/thinkgos/sharp/core/paginator"
+	"github.com/thinkgos/sharp/iorm/trans"
 )
 
 func Paginate(pg paginator.Param) func(db *gorm.DB) *gorm.DB {

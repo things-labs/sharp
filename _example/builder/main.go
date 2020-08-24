@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"runtime"
 
-	"github.com/thinkgos/sharp/v2/builder"
+	"github.com/thinkgos/sharp/builder"
 )
 
 func main() {
