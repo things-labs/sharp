@@ -15,7 +15,6 @@ require (
 	github.com/stretchr/testify v1.6.1
 	github.com/thinkgos/render v0.1.3
 	github.com/thinkgos/strext v0.3.2
-	golang.org/x/crypto v0.0.0-20200728195943-123391ffb6de
 	golang.org/x/image v0.0.0-20200801110659-972c09e46d76
 	golang.org/x/sys v0.0.0-20200817155316-9781c653f443 // indirect
 	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
