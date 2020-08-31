@@ -12,14 +12,12 @@
 
 
 ## Feature 
-- [top]() 常用未分类
-- [avatar]() 头像随机生成和裁剪
-- [builder]() 常用外部编译ldflags指定
-- [chi]() 常用net/http封装
-- [context]() 常用context变量封装
-- [core]() 无依赖核心包
-  - [logger]() 日志包
-  - [paginator]() 分页
-- [gin]() 常用gin封装
-- [iorm]() 常用gorm封装
-- [qrcode]() 常用二维码生成
+- [avatar](#avatar) 头像随机生成和裁剪
+- [builder](#builder) 常用外部编译ldflags指定
+- [chi](#chi) 常用net/http封装
+- [context](#context) 常用context变量封装
+- [core](#core) 无依赖核心包
+  - [paginator](#paginator) 分页
+- [gin](#gin) 常用gin封装
+- [iorm](#iorm) 常用gorm封装
+- [qrcode](#qrcode) 常用二维码生成
