@@ -14,8 +14,8 @@ import (
 	"github.com/boombuler/barcode"
 	"github.com/boombuler/barcode/qr"
 	"github.com/thinkgos/go-core-package/extos"
+	"github.com/thinkgos/go-core-package/extstr"
 	"github.com/thinkgos/go-core-package/lib/algo"
-	"github.com/thinkgos/strext"
 	"golang.org/x/image/bmp"
 )
 
@@ -48,7 +48,7 @@ func (sf *MetaInfo) Generate() (barcode.Barcode, error) {
 
 // GenerateToBytes generate to byte
 func (sf *MetaInfo) GenerateToBytes() ([]byte, string, error) {
-	if !strext.ContainsFold([]string{ExtJPG, ExtPNG, ExtGIF, ExtBMP}, sf.Ext) {
+	if !extstr.ContainsFold([]string{ExtJPG, ExtPNG, ExtGIF, ExtBMP}, sf.Ext) {
 		return nil, "", fmt.Errorf("not support image format: %s", sf.Ext)
 	}
 
