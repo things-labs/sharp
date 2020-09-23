@@ -9,6 +9,7 @@ import (
 	"github.com/thinkgos/sharp/iorm/trans"
 )
 
+// Paginate paginate
 func Paginate(pg paginator.Param) func(db *gorm.DB) *gorm.DB {
 	return func(db *gorm.DB) *gorm.DB {
 		if pg.PageSize > 0 {
@@ -21,6 +22,7 @@ func Paginate(pg paginator.Param) func(db *gorm.DB) *gorm.DB {
 	}
 }
 
+// CtxDB ctx db
 func CtxDB(ctx context.Context) func(db *gorm.DB) *gorm.DB {
 	return func(db *gorm.DB) *gorm.DB {
 		if tran := trans.FromTransCtx(ctx); tran != nil {

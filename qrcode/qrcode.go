@@ -99,7 +99,7 @@ func (sf *MetaInfo) GenerateToImageB64() (string, string, error) {
 		strings.TrimLeft(sf.Ext, "."), b64), filename, nil
 }
 
-// GenerateToImageB64 generate QR code to base64 string, return base64 string and filename
+// GenerateToBase64 generate QR code to base64 string, return base64 string and filename
 func (sf MetaInfo) GenerateToBase64() (string, string, error) {
 	data, filename, err := sf.GenerateToBytes()
 	if err != nil {

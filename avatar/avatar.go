@@ -25,6 +25,7 @@ import (
 // AvatarSize returns avatar's size
 // const AvatarSize = 290
 
+// Avatar 头像参数
 type Avatar struct {
 	Width     uint
 	Height    uint
