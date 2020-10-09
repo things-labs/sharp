@@ -17,7 +17,6 @@ type Code interface {
 type Response struct {
 	Code    int         `json:"code"`
 	Message string      `json:"message,omitempty"`
-	Detail  string      `json:"detail,omitempty"`
 	Data    interface{} `json:"data"`
 }
 
@@ -31,27 +30,27 @@ func dataField(data ...interface{}) interface{} {
 // JSONs 标准http status code应答
 func JSONs(w http.ResponseWriter, httpCode int, code Code, data ...interface{}) {
 	render.JSON(w, httpCode, &Response{
-		Code:    code.Value(),
-		Message: code.String(),
-		Data:    dataField(data...),
+		code.Value(),
+		code.String(),
+		dataField(data...),
 	})
 }
 
 // JSON 返回json信息,带标准回复
 func JSON(w http.ResponseWriter, statusCode int, data ...interface{}) {
 	render.JSON(w, statusCode, &Response{
-		Code:    statusCode,
-		Message: http.StatusText(statusCode),
-		Data:    dataField(data...),
+		statusCode,
+		http.StatusText(statusCode),
+		dataField(data...),
 	})
 }
 
 // JSONCustom http.StatusBadRequest式应答,自定义code,提供给前端
 func JSONCustom(w http.ResponseWriter, code Code, data ...interface{}) {
 	render.JSON(w, http.StatusBadRequest, &Response{
-		Code:    code.Value(),
-		Message: code.String(),
-		Data:    dataField(data...),
+		code.Value(),
+		code.String(),
+		dataField(data...),
 	})
 }
 
@@ -59,7 +58,6 @@ func JSONCustom(w http.ResponseWriter, code Code, data ...interface{}) {
 func JSONDetail(w http.ResponseWriter, err error, data ...interface{}) {
 	render.JSON(w, http.StatusBadRequest, &Response{
 		http.StatusBadRequest,
-		http.StatusText(http.StatusBadRequest),
 		err.Error(),
 		dataField(data...),
 	})

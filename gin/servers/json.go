@@ -17,7 +17,6 @@ type Code interface {
 type Response struct {
 	Code    int         `json:"code"`
 	Message string      `json:"message,omitempty"`
-	Detail  string      `json:"detail,omitempty"`
 	Data    interface{} `json:"data"`
 }
 
@@ -31,35 +30,34 @@ func dataField(data ...interface{}) interface{} {
 // JSONs 标准http status code应答
 func JSONs(c *gin.Context, httpCode int, code Code, data ...interface{}) {
 	c.JSON(httpCode, &Response{
-		Code:    code.Value(),
-		Message: code.String(),
-		Data:    dataField(data...),
+		code.Value(),
+		code.String(),
+		dataField(data...),
 	})
 }
 
 // JSON 标准http status code应答
-func JSON(c *gin.Context, code int, data ...interface{}) {
-	c.JSON(code, &Response{
-		Code:    code,
-		Message: http.StatusText(code),
-		Data:    dataField(data...),
+func JSON(c *gin.Context, httpCode int, data ...interface{}) {
+	c.JSON(httpCode, &Response{
+		httpCode,
+		http.StatusText(httpCode),
+		dataField(data...),
 	})
 }
 
 // JSONCustom http.StatusBadRequest式应答,自定义code码应答,一般给前端判断使用
 func JSONCustom(c *gin.Context, code Code, data ...interface{}) {
 	c.JSON(http.StatusBadRequest, &Response{
-		Code:    code.Value(),
-		Message: code.String(),
-		Data:    dataField(data...),
+		code.Value(),
+		code.String(),
+		dataField(data...),
 	})
 }
 
-// JSONDetail http.StatusBadRequest式应答,含detail字段,调试使用
+// JSONDetail http.StatusBadRequest式应答,message为err的stringer
 func JSONDetail(c *gin.Context, err error, data ...interface{}) {
 	c.JSON(http.StatusBadRequest, &Response{
 		http.StatusBadRequest,
-		http.StatusText(http.StatusBadRequest),
 		err.Error(),
 		dataField(data...),
 	})
