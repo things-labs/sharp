@@ -16,6 +16,14 @@ type Info struct {
 	Total     int64 `json:"total"`
 }
 
+// Page 分页
+type Page struct {
+	List      interface{} `json:"list"`
+	PageIndex int         `json:"pageIndex,omitempty"`
+	PageSize  int         `json:"pageSize,omitempty"`
+	Total     int64       `json:"total"`
+}
+
 // DefaultParam 默认分页参数值
 func DefaultParam() Param {
 	return Param{1, DefaultPageSize}
