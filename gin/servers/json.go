@@ -13,52 +13,98 @@ type Code interface {
 	Value() int
 }
 
-// Response 错误信息回复基本格式
+// Response 信息回复基本格式
 type Response struct {
-	Code    int         `json:"code"`
-	Message string      `json:"message,omitempty"`
-	Data    interface{} `json:"data"`
+	Code   int         `json:"code"`             // 码
+	Msg    string      `json:"msg,omitempty"`    // 信息
+	Detail string      `json:"detail,omitempty"` // 错误携带的信息, 用于开发者调试
+	Data   interface{} `json:"data"`             // 数据域
 }
 
-func dataField(data ...interface{}) interface{} {
-	if len(data) > 0 {
-		return data[0]
+// Option option
+type Option func(r *Response)
+
+// WithData data
+func WithData(data interface{}) Option {
+	return func(r *Response) {
+		r.Data = data
 	}
-	return "{}"
 }
 
-// JSONs 标准http status code应答
-func JSONs(c *gin.Context, httpCode int, code Code, data ...interface{}) {
-	c.JSON(httpCode, &Response{
-		code.Value(),
-		code.String(),
-		dataField(data...),
-	})
+// WithCode code
+func WithCode(code int) Option {
+	return func(r *Response) {
+		r.Code = code
+	}
+}
+
+// WithMsg message
+func WithMsg(msg string) Option {
+	return func(r *Response) {
+		r.Msg = msg
+	}
+}
+
+// WithICode Code interface 使应答修改code和msg,用于显示
+func WithICode(code Code) Option {
+	return func(r *Response) {
+		r.Code = code.Value()
+		r.Msg = code.String()
+	}
+}
+
+// WithDetail detail 开发调试使用
+func WithDetail(detail string) Option {
+	return func(r *Response) {
+		r.Detail = detail
+	}
+}
+
+// WithError err detail为err的stringer
+func WithError(err error) Option {
+	return func(r *Response) {
+		r.Detail = err.Error()
+	}
 }
 
 // JSON 标准http status code应答
-func JSON(c *gin.Context, httpCode int, data ...interface{}) {
-	c.JSON(httpCode, &Response{
-		httpCode,
-		http.StatusText(httpCode),
-		dataField(data...),
-	})
+func JSON(c *gin.Context, httpCode int, opts ...Option) {
+	rsp := Response{
+		Code: httpCode,
+		Msg:  http.StatusText(httpCode),
+		Data: "{}",
+	}
+
+	for _, opt := range opts {
+		opt(&rsp)
+	}
+
+	c.JSON(httpCode, rsp)
 }
 
-// JSONCustom http.StatusBadRequest式应答,自定义code码应答,一般给前端判断使用
-func JSONCustom(c *gin.Context, code Code, data ...interface{}) {
-	c.JSON(http.StatusBadRequest, &Response{
-		code.Value(),
-		code.String(),
-		dataField(data...),
-	})
+// JSONCustom http.StatusBadRequest式应答,自定义code码应答,一般给前端显示使用
+func JSONCustom(c *gin.Context, code Code, opts ...Option) {
+	rsp := Response{
+		Code: code.Value(),
+		Msg:  code.String(),
+		Data: "{}",
+	}
+	for _, opt := range opts {
+		opt(&rsp)
+	}
+	c.JSON(http.StatusBadRequest, rsp)
 }
 
-// JSONDetail http.StatusBadRequest式应答,message为err的stringer
-func JSONDetail(c *gin.Context, err error, data ...interface{}) {
-	c.JSON(http.StatusBadRequest, &Response{
-		http.StatusBadRequest,
-		err.Error(),
-		dataField(data...),
-	})
+// JSONDetail http.StatusBadRequest式应答,detail为err的stringer
+func JSONDetail(c *gin.Context, err error, opts ...Option) {
+	rsp := Response{
+		Code:   http.StatusBadRequest,
+		Msg:    http.StatusText(http.StatusBadRequest),
+		Data:   "{}",
+		Detail: err.Error(),
+	}
+	for _, opt := range opts {
+		opt(&rsp)
+	}
+	c.JSON(http.StatusBadRequest, rsp)
 }

@@ -18,6 +18,7 @@ require (
 	github.com/ugorji/go v1.1.12 // indirect
 	golang.org/x/image v0.0.0-20200927104501-e162460cd6b5
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
+	google.golang.org/genproto v0.0.0-20200526211855-cb27e3aa2013
 	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
 	gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776 // indirect
 	gorm.io/gorm v1.20.2
