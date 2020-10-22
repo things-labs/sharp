@@ -22,13 +22,11 @@ func Paginate(pg paginator.Param) func(db *gorm.DB) *gorm.DB {
 	}
 }
 
-// CtxDB ctx db
+// CtxDB ctx db 如果上下文中有事务,返回事务,否则使用db
 func CtxDB(ctx context.Context) func(db *gorm.DB) *gorm.DB {
 	return func(db *gorm.DB) *gorm.DB {
 		if tran := trans.FromTransCtx(ctx); tran != nil {
-			if tx, ok := tran.(*gorm.DB); ok {
-				return tx
-			}
+			return tran.DB
 		}
 		return db
 	}
