@@ -53,5 +53,9 @@ func Exec(ctx context.Context, db *gorm.DB, cb func(context.Context) error) erro
 		tx.Rollback()
 		return err
 	}
-	return tx.Commit().Error
+	if err := tx.Commit().Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+	return nil
 }
