@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+	fmt.Println("App Name: " + builder.Name)
 	fmt.Println("Build Time: " + builder.BuildTime)
 	fmt.Println("Git Commit: " + builder.GitCommit)
 	fmt.Println("Git Full Commit: " + builder.GitFullCommit)

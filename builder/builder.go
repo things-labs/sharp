@@ -13,4 +13,6 @@ var (
 	APIVersion = ""
 	// Model 型号 由外部ldflags指定
 	Model = ""
+	// Name 应用名称 由外部ldflags指定
+	Name = ""
 )

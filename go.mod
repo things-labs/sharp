@@ -5,7 +5,8 @@ go 1.14
 require (
 	github.com/boombuler/barcode v1.0.1-0.20190219062509-6c824513bacc
 	github.com/gin-gonic/gin v1.6.3
-	github.com/go-playground/validator/v10 v10.4.0 // indirect
+	github.com/go-playground/validator/v10 v10.4.1 // indirect
+	github.com/golang/protobuf v1.4.3 // indirect
 	github.com/issue9/assert v1.3.2 // indirect
 	github.com/issue9/identicon v1.0.1
 	github.com/kr/text v0.2.0 // indirect
@@ -13,13 +14,14 @@ require (
 	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
 	github.com/oliamb/cutter v0.2.2
 	github.com/stretchr/testify v1.6.1
-	github.com/thinkgos/go-core-package v0.1.4
+	github.com/thinkgos/go-core-package v0.1.5
 	github.com/thinkgos/render v0.1.4
-	github.com/ugorji/go v1.1.12 // indirect
+	github.com/ugorji/go v1.2.0 // indirect
+	golang.org/x/crypto v0.0.0-20201016220609-9e8e0b390897 // indirect
 	golang.org/x/image v0.0.0-20200927104501-e162460cd6b5
+	golang.org/x/sys v0.0.0-20201110211018-35f3e6cf4a65 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
-	google.golang.org/genproto v0.0.0-20200526211855-cb27e3aa2013
 	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
 	gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776 // indirect
-	gorm.io/gorm v1.20.2
+	gorm.io/gorm v1.20.6
 )
