@@ -22,12 +22,6 @@ func (sf *Trans) Begin() *Trans {
 	return &Trans{sf.DB.Begin()}
 }
 
-// ExecTrans 执行事务
-// Deprecated: use Exec instead
-func ExecTrans(ctx context.Context, db *gorm.DB, cb func(context.Context) error) error {
-	return Exec(ctx, db, cb)
-}
-
 // Exec 执行事务
 func Exec(ctx context.Context, db *gorm.DB, cb func(context.Context) error) error {
 	if trans := FromTransCtx(ctx); trans != nil {
