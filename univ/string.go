@@ -1,4 +1,4 @@
-package sharp
+package univ
 
 import (
 	"strings"
@@ -13,7 +13,7 @@ func HideCard(card string) string {
 	case length > 4 && length <= 10:
 		return card[:4] + strings.Repeat("*", length-4)
 	case length > 10:
-		return card[:4] + strings.Repeat("*", length-8) + card[(length-4):]
+		return card[:4] + strings.Repeat("*", length-7) + card[(length-3):]
 	default:
 		return strings.Repeat("*", length)
 	}

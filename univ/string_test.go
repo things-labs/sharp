@@ -1,4 +1,4 @@
-package sharp
+package univ
 
 import (
 	"testing"
@@ -11,7 +11,7 @@ func TestHideCard(t *testing.T) {
 	require.Equal(t, "****", HideCard("1234"))
 	require.Equal(t, "1234*", HideCard("12345"))
 	require.Equal(t, "1234*****", HideCard("123456789"))
-	require.Equal(t, "1234*******2345", HideCard("123456789012345"))
+	require.Equal(t, "1234********345", HideCard("123456789012345"))
 }
 
 func TestHideMobile(t *testing.T) {

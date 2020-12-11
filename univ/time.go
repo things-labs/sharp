@@ -1,10 +1,11 @@
-package sharp
+package univ
 
 import (
 	"fmt"
 	"time"
 )
 
+// TimeAgo see code
 func TimeAgo(t time.Time) string {
 	now := time.Now()
 	diff := now.Sub(t)
