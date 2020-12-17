@@ -21,3 +21,4 @@
 - [gin](#gin) 常用gin封装
 - [iorm](#iorm) 常用gorm封装
 - [qrcode](#qrcode) 常用二维码生成
+- [univ](#univ) 通用包

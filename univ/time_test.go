@@ -17,17 +17,17 @@ func TestAgo(t *testing.T) {
 		{
 			"小于1分钟",
 			args{time.Now().Add(-30 * time.Second)},
-			"约 1 分钟前",
+			"1 minute ago",
 		},
 		{
 			"约2小时前",
 			args{time.Now().Add(-100 * time.Minute)},
-			"约 2 小时前",
+			"2 hour ago",
 		},
 		{
 			"约1天前",
 			args{time.Now().Add(-25 * time.Hour)},
-			"约 1 天前",
+			"1 day ago",
 		},
 		{
 			"11-02 14:00",

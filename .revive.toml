@@ -27,7 +27,7 @@ warningCode = 0
 [rule.unused-parameter]
 [rule.unreachable-code]
 [rule.redefines-builtin-id]
-
+[rule.receiver-naming]
 # Currently this makes too much noise, but should add it in
 # and perhaps ignore it in a few files
 #[rule.confusing-naming]
@@ -40,6 +40,3 @@ warningCode = 0
 #  severity = "warning"
 #[rule.flag-parameter]
 #  severity = "warning"
-
-# 忽略 接收者名字的检测
-# [rule.receiver-naming]
