@@ -30,9 +30,9 @@ func TestAgo(t *testing.T) {
 			"1 day ago",
 		},
 		{
-			"11-02 14:00",
-			args{time.Date(time.Now().Year(), 11, 2, 14, 0, 0, 0, time.Local)},
-			"11-02 14:00",
+			"01-01 00:00",
+			args{time.Date(time.Now().Year(), 1, 1, 0, 0, 0, 0, time.Local)},
+			"01-01 00:00",
 		},
 		{
 			"2016-02-02",

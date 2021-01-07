@@ -17,10 +17,10 @@ func main() {
 		Height:  100,
 		Ext:     qrcode.ExtJPG,
 	}
-	data, name, err := meta.GenerateToImageB64()
+	data, err := meta.ToImageB64()
 	if err != nil {
 		panic(err)
 	}
-	log.Println(name)
+	log.Println(meta.Filename())
 	log.Println(data)
 }
