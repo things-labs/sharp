@@ -14,9 +14,9 @@ import (
 
 	"github.com/boombuler/barcode"
 	"github.com/boombuler/barcode/qr"
-	"github.com/thinkgos/go-core-package/extos"
-	"github.com/thinkgos/go-core-package/extstr"
-	"github.com/thinkgos/go-core-package/lib/algo"
+	"github.com/thinkgos/x/extos"
+	"github.com/thinkgos/x/extstr"
+	"github.com/thinkgos/x/lib/algo"
 	"golang.org/x/image/bmp"
 )
 
